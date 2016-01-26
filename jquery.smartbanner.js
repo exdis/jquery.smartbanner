@@ -10,12 +10,14 @@
     factory(root.jQuery);
   }
 })(this, function ($) {
+    console.log('%c test', 'background-color: red');
     var SmartBanner = function (options) {
         this.origHtmlMargin = parseFloat($('html').css('margin-top')); // Get the original margin-top of the HTML element so we can take that into account
         this.options = $.extend({}, $.smartbanner.defaults, options);
 
         var standalone = navigator.standalone; // Check if it's already a standalone web app or running within a webui view of an app (not mobile safari)
         var UA = navigator.userAgent;
+        alert('smartBanner: UA ' + UA);
 
         // Detect banner type (iOS or Android)
         if (this.options.force) {
@@ -23,9 +25,14 @@
         } else if (UA.match(/Windows Phone/i) !== null && UA.match(/Edge|Touch/i) !== null) {
             this.type = 'windows';
         } else if (UA.match(/iPhone|iPod/i) !== null || (UA.match(/iPad/) && this.options.iOSUniversalApp)) {
-            if (UA.match(/Safari/i) !== null &&
-               (UA.match(/CriOS/i) !== null ||
-               window.Number(UA.substr(UA.indexOf('OS ') + 3, 3).replace('_', '.')) < 6)) this.type = 'ios'; // Check webview and native smart banner support (iOS 6+)
+            console.log('%c test it\'s Ipxxx', 'background-color: red');
+            alert('smartBanner: iPhone');
+            // Safari (version insensitive + also CriOs)
+            if (UA.match(/Safari/i) !== null) {
+                alert('smartBanner: Safari');
+                console.log('%c test it\'s Safari', 'background-color: red');
+                this.type = 'ios';
+            }
         } else if (UA.match(/\bSilk\/(.*\bMobile Safari\b)?/) || UA.match(/\bKF\w/) || UA.match('Kindle Fire')) {
             this.type = 'kindle';
         } else if (UA.match(/Android/i) !== null) {
