@@ -43,8 +43,8 @@
         if (this.scale < 1) this.scale = 1;
 
         // Get info from meta data
-        var meta = $(this.type == 'android' ? 'meta[name="google-play-app"]' :
-            this.type == 'ios' ? 'meta[name="apple-itunes-app"]' :
+        var meta = $(this.type == 'android' ? 'meta[name="android-app"]' :
+            this.type == 'ios' ? 'meta[name="ios-app"]' :
             this.type == 'kindle' ? 'meta[name="kindle-fire-app"]' : 'meta[name="msApplication-ID"]');
         if (meta.length === 0) return;
 
