@@ -175,26 +175,7 @@
             var banner = $('#smartbanner');
             banner.stop();
 
-            if (this.options.layer) {
-                banner.animate({top: -1 * this.bannerHeight * this.scale, display: 'block'}, this.options.speedIn).removeClass('shown');
-                $(this.pushSelector).animate({paddingTop: this.origHtmlMargin}, this.options.speedIn, 'swing', callback);
-            } else {
-                if ($.support.transition) {
-                    if ( this.type !== 'android' )
-                      banner.css('top', -1 * this.bannerHeight * this.scale).removeClass('shown');
-                    else
-                      banner.css({display:'none'}).removeClass('shown');
-                    var transitionCallback = function () {
-                        $('html').removeClass('sb-animation');
-                        if (callback) {
-                            callback();
-                        }
-                    };
-                    $(this.pushSelector).addClass('sb-animation').one($.support.transition.end, transitionCallback).emulateTransitionEnd(this.options.speedOut).css('margin-top', this.origHtmlMargin);
-                } else {
-                    banner.slideUp(this.options.speedOut).removeClass('shown');
-                }
-            }
+            banner.hide();
         }
 
       , close: function (e) {
